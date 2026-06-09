@@ -46,10 +46,10 @@ constitutional_alignment:
       principle_type: trace
       satisfied: true
 
-violations: []
-unresolved_conditions: []
-requires_human_review: false
-reason: "All applicable constitutional principles are satisfied."
+  violations: []
+  unresolved_conditions: []
+  requires_human_review: false
+  reason: "All applicable constitutional principles are satisfied."
 
 semantic_drift:
   semantic_drift_status: no_drift_detected
@@ -107,4 +107,5 @@ structural_tuning_result:
   requires_human_review: false
   escalation_required: false
   reason: "The recovery action is structurally aligned and may proceed."
+
 
