@@ -1,0 +1,690 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "structural-tuning-record.schema.json",
+"title": "Structural Tuning Record",
+"description": "A general governance record for the Structural AI Tuning Layer. It represents AI actions, governance state, constitutional alignment, semantic drift, recovery gate status, human review boundary, and incident lifecycle context.",
+"type": "object",
+"additionalProperties": false,
+"required": [
+"record_type",
+"version",
+"action",
+"governance_state",
+"constitutional_alignment",
+"semantic_drift",
+"human_review",
+"incident_lifecycle",
+"structural_tuning_result"
+],
+"properties": {
+"record_type": {
+"type": "string",
+"const": "structural_tuning_record",
+"description": "The type of this record."
+},
+"version": {
+"type": "string",
+"enum": ["0.1"],
+"description": "The schema version used by this record."
+},
+"metadata": {
+"type": "object",
+"additionalProperties": false,
+"properties": {
+"created_at": {
+"type": "string",
+"format": "date-time"
+},
+"updated_at": {
+"type": "string",
+"format": "date-time"
+},
+"created_by": {
+"type": "string"
+},
+"source_system": {
+"type": "string"
+},
+"tags": {
+"type": "array",
+"items": {
+"type": "string"
+}
+}
+}
+},
+"action": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"action_id",
+"action_type",
+"scope",
+"risk_level",
+"summary"
+],
+"properties": {
+"action_id": {
+"type": "string",
+"minLength": 1
+},
+"action_type": {
+"type": "string",
+"enum": [
+"monitoring",
+"detection",
+"triage",
+"containment",
+"quarantine",
+"verification",
+"recovery",
+"closure",
+"escalation",
+"governance_change",
+"self_improvement",
+"review",
+"other"
+]
+},
+"scope": {
+"type": "string",
+"minLength": 1
+},
+"risk_level": {
+"type": "string",
+"enum": [
+"low",
+"medium",
+"high",
+"critical"
+]
+},
+"summary": {
+"type": "string",
+"minLength": 1
+}
+}
+},
+"governance_state": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"verification_status",
+"governance_status",
+"trace_consistency_status",
+"constitutional_alignment_status",
+"semantic_drift_status",
+"human_review_status",
+"recovery_gate_status",
+"lifecycle_evaluation_status"
+],
+"properties": {
+"verification_status": {
+"type": "string",
+"enum": [
+"not_applicable",
+"not_started",
+"in_progress",
+"failed",
+"verified",
+"recovery_approved"
+]
+},
+"governance_status": {
+"type": "string",
+"enum": [
+"not_applicable",
+"not_reviewed",
+"under_review",
+"rejected",
+"approved",
+"recovery_approved",
+"escalated"
+]
+},
+"trace_consistency_status": {
+"type": "string",
+"enum": [
+"not_applicable",
+"consistent",
+"incomplete",
+"inconsistent",
+"contradictory",
+"insufficient_evidence"
+]
+},
+"constitutional_alignment_status": {
+"type": "string",
+"enum": [
+"aligned",
+"partially_aligned",
+"misaligned",
+"insufficient_evidence",
+"not_applicable",
+"requires_human_review",
+"escalated"
+]
+},
+"semantic_drift_status": {
+"type": "string",
+"enum": [
+"no_drift_detected",
+"drift_detected",
+"possible_drift",
+"insufficient_evidence",
+"requires_human_review",
+"escalated"
+]
+},
+"human_review_status": {
+"type": "string",
+"enum": [
+"not_required",
+"required",
+"pending",
+"in_review",
+"approved",
+"rejected",
+"escalated",
+"expired",
+"invalid"
+]
+},
+"recovery_gate_status": {
+"type": "string",
+"enum": [
+"not_applicable",
+"passed",
+"blocked",
+"pending_verification",
+"pending_governance_review",
+"pending_human_review",
+"pending_trace_consistency",
+"escalated",
+"failed"
+]
+},
+"lifecycle_evaluation_status": {
+"type": "string",
+"enum": [
+"valid",
+"invalid",
+"pending",
+"blocked",
+"escalated",
+"inconsistent",
+"insufficient_evidence",
+"not_applicable"
+]
+}
+}
+},
+"constitutional_alignment": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"constitutional_alignment_status",
+"applicable_principles",
+"violations",
+"unresolved_conditions",
+"requires_human_review",
+"reason"
+],
+"properties": {
+"constitutional_alignment_status": {
+"type": "string",
+"enum": [
+"aligned",
+"partially_aligned",
+"misaligned",
+"insufficient_evidence",
+"not_applicable",
+"requires_human_review",
+"escalated"
+]
+},
+"applicable_principles": {
+"type": "array",
+"items": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"principle_id",
+"principle_text",
+"satisfied"
+],
+"properties": {
+"principle_id": {
+"type": "string",
+"minLength": 1
+},
+"principle_text": {
+"type": "string",
+"minLength": 1
+},
+"principle_type": {
+"type": "string",
+"enum": [
+"recovery",
+"human_review",
+"scope",
+"trace",
+"self_improvement",
+"constitutional_integrity",
+"other"
+]
+},
+"satisfied": {
+"type": "boolean"
+}
+}
+}
+},
+"violations": {
+"type": "array",
+"items": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"violation_code",
+"reason"
+],
+"properties": {
+"principle_id": {
+"type": ["string", "null"]
+},
+"violation_code": {
+"type": "string",
+"minLength": 1
+},
+"reason": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"unresolved_conditions": {
+"type": "array",
+"items": {
+"type": "string"
+}
+},
+"requires_human_review": {
+"type": "boolean"
+},
+"reason": {
+"type": "string"
+}
+}
+},
+"semantic_drift": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"semantic_drift_status",
+"drift_severity",
+"drift_codes",
+"reason"
+],
+"properties": {
+"semantic_drift_status": {
+"type": "string",
+"enum": [
+"no_drift_detected",
+"drift_detected",
+"possible_drift",
+"insufficient_evidence",
+"requires_human_review",
+"escalated"
+]
+},
+"drift_severity": {
+"type": "string",
+"enum": [
+"none",
+"low",
+"medium",
+"high",
+"critical"
+]
+},
+"drift_codes": {
+"type": "array",
+"items": {
+"type": "string"
+}
+},
+"claimed_state": {
+"type": ["string", "null"]
+},
+"expected_meaning": {
+"type": ["string", "null"]
+},
+"observed_structure_summary": {
+"type": ["string", "null"]
+},
+"reason": {
+"type": "string"
+}
+}
+},
+"recovery_gate": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"recovery_gate_status",
+"recovery_allowed",
+"reason"
+],
+"properties": {
+"recovery_gate_status": {
+"type": "string",
+"enum": [
+"not_applicable",
+"passed",
+"blocked",
+"pending_verification",
+"pending_governance_review",
+"pending_human_review",
+"pending_trace_consistency",
+"escalated",
+"failed"
+]
+},
+"recovery_allowed": {
+"type": "boolean"
+},
+"reason": {
+"type": "string"
+}
+}
+},
+"human_review": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"human_review_required",
+"human_review_status",
+"review_requirement_level",
+"review_boundary_status",
+"action_allowed",
+"reason"
+],
+"properties": {
+"human_review_required": {
+"type": "boolean"
+},
+"human_review_status": {
+"type": "string",
+"enum": [
+"not_required",
+"required",
+"pending",
+"in_review",
+"approved",
+"rejected",
+"escalated",
+"expired",
+"invalid"
+]
+},
+"review_requirement_level": {
+"type": "string",
+"enum": [
+"none",
+"optional",
+"required",
+"mandatory",
+"escalation_required"
+]
+},
+"reviewer_role": {
+"type": ["string", "null"],
+"enum": [
+"operator",
+"governance_reviewer",
+"security_reviewer",
+"constitutional_reviewer",
+"incident_commander",
+"system_owner",
+"external_auditor",
+null
+]
+},
+"reviewer_id": {
+"type": ["string", "null"]
+},
+"review_trace_id": {
+"type": ["string", "null"]
+},
+"review_boundary_status": {
+"type": "string",
+"enum": [
+"passed",
+"not_required",
+"pending_human_review",
+"in_review",
+"rejected",
+"escalated",
+"insufficient_review_evidence",
+"invalid_review_record",
+"review_bypassed",
+"failed"
+]
+},
+"action_allowed": {
+"type": "boolean"
+},
+"reason": {
+"type": "string"
+}
+}
+},
+"incident_lifecycle": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"incident_id",
+"phase",
+"status",
+"severity",
+"related_trace_ids"
+],
+"properties": {
+"incident_id": {
+"type": "string",
+"minLength": 1
+},
+"phase": {
+"type": "string",
+"enum": [
+"detected",
+"triaged",
+"contained",
+"quarantined",
+"verified",
+"review_pending",
+"recovery_pending",
+"recovered",
+"closed",
+"escalated",
+"not_applicable"
+]
+},
+"status": {
+"type": "string",
+"enum": [
+"open",
+"active",
+"contained",
+"quarantined",
+"verified",
+"pending_review",
+"pending_recovery",
+"recovered",
+"closed",
+"blocked",
+"escalated",
+"failed",
+"not_applicable"
+]
+},
+"severity": {
+"type": "string",
+"enum": [
+"low",
+"medium",
+"high",
+"critical",
+"not_applicable"
+]
+},
+"parent_trace_id": {
+"type": ["string", "null"]
+},
+"related_trace_ids": {
+"type": "array",
+"items": {
+"type": "string"
+}
+},
+"next_allowed_phases": {
+"type": "array",
+"items": {
+"type": "string",
+"enum": [
+"detected",
+"triaged",
+"contained",
+"quarantined",
+"verified",
+"review_pending",
+"recovery_pending",
+"recovered",
+"closed",
+"escalated"
+]
+}
+}
+}
+},
+"traceability": {
+"type": "object",
+"additionalProperties": false,
+"properties": {
+"detection_trace_id": {
+"type": ["string", "null"]
+},
+"triage_trace_id": {
+"type": ["string", "null"]
+},
+"containment_trace_id": {
+"type": ["string", "null"]
+},
+"verification_trace_id": {
+"type": ["string", "null"]
+},
+"human_review_trace_id": {
+"type": ["string", "null"]
+},
+"recovery_trace_id": {
+"type": ["string", "null"]
+},
+"closure_trace_id": {
+"type": ["string", "null"]
+},
+"governance_decision_id": {
+"type": ["string", "null"]
+}
+}
+},
+"structural_tuning_result": {
+"type": "object",
+"additionalProperties": false,
+"required": [
+"structural_tuning_status",
+"action_allowed",
+"requires_human_review",
+"escalation_required",
+"reason"
+],
+"properties": {
+"structural_tuning_status": {
+"type": "string",
+"enum": [
+"aligned",
+"partially_aligned",
+"blocked",
+"misaligned",
+"requires_human_review",
+"escalated",
+"insufficient_evidence",
+"failed"
+]
+},
+"action_allowed": {
+"type": "boolean"
+},
+"requires_human_review": {
+"type": "boolean"
+},
+"escalation_required": {
+"type": "boolean"
+},
+"reason": {
+"type": "string",
+"minLength": 1
+}
+}
+}
+},
+"allOf": [
+{
+"if": {
+"properties": {
+"action": {
+"properties": {
+"action_type": {
+"const": "recovery"
+}
+},
+"required": ["action_type"]
+}
+},
+"required": ["action"]
+},
+"then": {
+"required": ["recovery_gate"]
+}
+},
+{
+"if": {
+"properties": {
+"human_review": {
+"properties": {
+"human_review_required": {
+"const": true
+}
+},
+"required": ["human_review_required"]
+}
+},
+"required": ["human_review"]
+},
+"then": {
+"properties": {
+"human_review": {
+"properties": {
+"human_review_status": {
+"not": {
+"const": "not_required"
+}
+}
+}
+}
+}
+}
+}
+]
+}
