@@ -1,0 +1,111 @@
+record_type: structural_tuning_record
+version: "0.1"
+
+metadata:
+created_at: "2026-06-09T10:00:00Z"
+updated_at: "2026-06-09T10:30:00Z"
+created_by: "structural-ai-tuning-layer"
+source_system: "example"
+tags:
+- recovery
+- governance
+- structural-tuning
+
+action:
+action_id: act-2026-0001
+action_type: recovery
+scope: ai_defense_governance
+risk_level: medium
+summary: "Recovery requested after containment, verification, and human review."
+
+governance_state:
+verification_status: recovery_approved
+governance_status: recovery_approved
+trace_consistency_status: consistent
+constitutional_alignment_status: aligned
+semantic_drift_status: no_drift_detected
+human_review_status: approved
+recovery_gate_status: passed
+lifecycle_evaluation_status: valid
+
+constitutional_alignment:
+constitutional_alignment_status: aligned
+applicable_principles:
+- principle_id: no_recovery_without_verification
+principle_text: "No recovery without verification."
+principle_type: recovery
+satisfied: true
+
+```
+- principle_id: no_bypassing_required_human_review
+  principle_text: "No bypassing required human review."
+  principle_type: human_review
+  satisfied: true
+
+- principle_id: maintain_trace_consistency
+  principle_text: "Governance actions must preserve trace consistency."
+  principle_type: trace
+  satisfied: true
+```
+
+violations: []
+unresolved_conditions: []
+requires_human_review: false
+reason: "All applicable constitutional principles are satisfied."
+
+semantic_drift:
+semantic_drift_status: no_drift_detected
+drift_severity: none
+drift_codes: []
+claimed_state: recovered
+expected_meaning: "Recovery requires verification, governance approval, human review, recovery gate approval, and trace consistency."
+observed_structure_summary: "Verification, governance approval, human review, recovery gate, and trace consistency are satisfied."
+reason: "The claimed recovery state matches the required institutional conditions."
+
+recovery_gate:
+recovery_gate_status: passed
+recovery_allowed: true
+reason: "Recovery is allowed because verification, governance approval, human review, and trace consistency are satisfied."
+
+human_review:
+human_review_required: true
+human_review_status: approved
+review_requirement_level: mandatory
+reviewer_role: governance_reviewer
+reviewer_id: reviewer-2026-0001
+review_trace_id: trace-2026-0004
+review_boundary_status: passed
+action_allowed: true
+reason: "Required human review was completed and approved."
+
+incident_lifecycle:
+incident_id: inc-2026-0001
+phase: recovery_pending
+status: pending_recovery
+severity: medium
+parent_trace_id: trace-2026-0001
+related_trace_ids:
+- trace-2026-0001
+- trace-2026-0002
+- trace-2026-0003
+- trace-2026-0004
+next_allowed_phases:
+- recovered
+- escalated
+
+traceability:
+detection_trace_id: trace-2026-0001
+triage_trace_id: trace-2026-0002
+containment_trace_id: trace-2026-0003
+verification_trace_id: trace-2026-0003
+human_review_trace_id: trace-2026-0004
+recovery_trace_id: null
+closure_trace_id: null
+governance_decision_id: gov-2026-0001
+
+structural_tuning_result:
+structural_tuning_status: aligned
+action_allowed: true
+requires_human_review: false
+escalation_required: false
+reason: "The recovery action is structurally aligned and may proceed."
